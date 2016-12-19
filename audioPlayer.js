@@ -115,6 +115,7 @@
       audio.play();
       return this.update_ui();
     },
+
     pause: function() {
       if (!this.playing) {
         return;
@@ -123,6 +124,7 @@
       audio.pause();
       return this.update_ui();
     },
+    
     track_toggle: function(i) {
       this.pause();
       if (android) {
@@ -131,11 +133,13 @@
       audio.currentTime = this.offsets[i];
       return this.play();
     },
+
     audio_ended: function() {
       this.playing = false;
       this.ended = true;
       return this.update_ui();
     },
+
     next_track: function() {
       var track;
       track = this.track_index(this.current_time());
@@ -143,6 +147,7 @@
         return this.track_toggle(track + 1);
       }
     },
+
     previous_track: function() {
       var track;
       track = this.track_index(this.current_time());
@@ -150,17 +155,21 @@
         return this.track_toggle(track - 1);
       }
     },
+
     show_lightbox: function() {
       return lightbox.className = '';
     },
+
     hide_lightbox: function() {
       return lightbox.className = 'hidden';
     },
+
     li_toggle: function(i) {
       return function() {
         return this.track_toggle(i);
       };
     },
+
     key_down: function(e) {
       if (e.keyCode === 32) {
         e.preventDefault();
@@ -173,6 +182,7 @@
         return this.previous_track();
       }
     },
+
     start: function() {
       var i, j, len, li, results;
       document.addEventListener('keydown', this.key_down.bind(this));

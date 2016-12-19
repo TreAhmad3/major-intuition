@@ -74,4 +74,6 @@ main {
   user-select: none;
 }
 
-
+#lyrics {
+  display:none;
+}
