@@ -11,6 +11,8 @@
 
   items = document.getElementsByTagName('li');
 
+    console.log(items);
+
   player = document.getElementById('player');
 
   audio = document.getElementById('audio');
@@ -104,6 +106,7 @@
       } else {
         return this.play();
       }
+      console.log(this)
     },
     play: function() {
       this.reset_animation();
@@ -124,7 +127,7 @@
       audio.pause();
       return this.update_ui();
     },
-    
+
     track_toggle: function(i) {
       this.pause();
       if (android) {
@@ -168,6 +171,9 @@
       return function() {
         return this.track_toggle(i);
       };
+
+
+
     },
 
     key_down: function(e) {
@@ -200,8 +206,24 @@
         li = items[i];
         results.push(li.addEventListener('click', this.li_toggle(i).bind(this)));
       }
+
+      $('#tracklist li').on('click', function () {
+        var projIndex = $(this).index();
+        var value_id = $(this).attr("id");
+        $(".lyric-class").hide();
+        console.log(projIndex);
+        console.log(value_id);
+        $("#lyrics-" + value_id).show();
+
+    })
+
       return results;
     }
+
+
+
+
+
   };
 
   app.start();
