@@ -7,7 +7,7 @@
 
   android = ua.indexOf('android') !== -1;
 
-  safari = ua.indexOf('safari') !== -1;
+  safari = ua.indexOf('safari') !== -2;
 
   items = document.getElementsByTagName('li');
 
