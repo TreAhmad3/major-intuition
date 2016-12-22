@@ -11,6 +11,8 @@
 
   items = document.getElementsByTagName('li');
 
+    console.log(items);
+
   player = document.getElementById('player');
 
   audio = document.getElementById('audio');
@@ -29,7 +31,7 @@
     ended: false,
     stars: '*',
     titles: ['INTRO [PROD. MATTHEW SQUARE]', 'APT PARTY [PROD. THAT KID T.A.Z.]', 'A&#39S & B&#39S [PROD. SWANN]', 'SOUTHERN BISCUITS FEAT. TJ &nbsp[PROD. THAT KID T.A.Z.]', 'STAY WITH ME FEAT. DEXTER JORDAN [PROD. THAT KID T.A.Z.]'],
-    offsets: [0, 176, 418, 565, 866],
+    offsets: [0, 173, 417, 564, 858],
     update_ui: function() {
       var ft, t;
       if (this.playing) {
@@ -74,7 +76,7 @@
     },
 
     current_time: function() {
-      return Math.round(audio.currentTime);
+      return Math.floor(audio.currentTime);
     },
 
     formatted_time: function(t) {
@@ -104,6 +106,7 @@
       } else {
         return this.play();
       }
+      console.log(this)
     },
     play: function() {
       this.reset_animation();
@@ -124,7 +127,7 @@
       audio.pause();
       return this.update_ui();
     },
-    
+
     track_toggle: function(i) {
       this.pause();
       if (android) {
@@ -168,6 +171,9 @@
       return function() {
         return this.track_toggle(i);
       };
+
+
+
     },
 
     key_down: function(e) {
@@ -200,8 +206,24 @@
         li = items[i];
         results.push(li.addEventListener('click', this.li_toggle(i).bind(this)));
       }
+
+      $('#tracklist li').on('click', function () {
+        var projIndex = $(this).index();
+        var value_id = $(this).attr("id");
+        $(".lyric-class").hide();
+        console.log(projIndex);
+        console.log(value_id);
+        $("#lyrics-" + value_id).show();
+
+    })
+
       return results;
     }
+
+
+
+
+
   };
 
   app.start();
